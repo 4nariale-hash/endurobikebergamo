@@ -6,69 +6,75 @@
 <title>Enduro Bike Bergamo</title>
 
 <!-- FONT SPORTIVO -->
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
 
 <style>
 body {
     margin: 0;
-    font-family: 'Oswald', Arial, sans-serif;
     background: black;
     color: white;
+    font-family: 'Bebas Neue', Arial, sans-serif;
 }
 
 /* HERO FULLSCREEN */
 .hero {
     height: 100vh;
     background-image:
-        linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)),
+        linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.6)),
         url("casco.jpeg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    background-attachment: fixed;
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     text-align: center;
-    padding: 20px;
+    padding: 30px 20px;
 }
 
-/* LOGO */
-.hero img {
-    width: 280px;
+/* PARTE ALTA */
+.hero-top img {
+    width: 220px;
     max-width: 80%;
-    margin-bottom: 30px;
 }
 
-/* TESTI HERO */
-.hero h1 {
-    font-size: clamp(32px, 6vw, 64px);
+.hero-top h1 {
+    margin-top: 15px;
+    font-size: clamp(28px, 5vw, 48px);
+    letter-spacing: 4px;
     text-transform: uppercase;
-    letter-spacing: 3px;
-    margin: 0;
     color: #ff6600;
 }
 
-.hero p {
-    font-size: clamp(18px, 3vw, 26px);
-    margin-top: 15px;
-    max-width: 900px;
+/* PARTE BASSA */
+.hero-bottom {
+    width: 100%;
+    padding-bottom: 30px;
+}
+
+.hero-bottom h2 {
+    font-size: clamp(32px, 6vw, 64px);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin: 0;
+    color: white;
 }
 
 /* NAV */
 nav {
     background: black;
-    text-align: center;
     padding: 15px 0;
-    border-top: 1px solid #222;
+    text-align: center;
 }
 
 nav a {
     color: #ff6600;
     margin: 0 15px;
     text-decoration: none;
-    font-weight: 600;
+    font-size: 18px;
 }
 
 nav a:hover {
@@ -82,37 +88,26 @@ section {
     background: black;
 }
 
-h2 {
+h3 {
     color: #ff6600;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
 }
 
-/* CARD */
 .card {
-    border: 1px solid #222;
+    max-width: 600px;
     margin: 20px auto;
     padding: 20px;
-    max-width: 600px;
-    background: #000;
-}
-
-.card p {
+    border: 1px solid #222;
+    font-family: Arial, sans-serif;
     color: #ddd;
 }
 
-/* SOCIAL */
-.social img {
-    height: 50px;
-    margin: 0 20px;
-}
-
-/* FOOTER */
-footer {
-    background: #111;
-    padding: 20px;
-    text-align: center;
-    font-size: 14px;
+/* MOBILE FIX */
+@media (max-width: 768px) {
+    .hero {
+        background-attachment: scroll;
+    }
 }
 </style>
 </head>
@@ -121,131 +116,44 @@ footer {
 
 <!-- HERO -->
 <div class="hero">
-    <img src="logo2.jpeg" alt="Enduro Bike Bergamo Logo">
 
-    <h1>Vivi l’emozione dell’enduro</h1>
-    <p>
-        Adrenalina, elettrico, off-road.<br>
-        La nuova esperienza enduro in Bergamasca.
-    </p>
+    <!-- ALTO -->
+    <div class="hero-top">
+        <img src="logo2.jpeg" alt="Enduro Bike Bergamo">
+        <h1>Enduro Bike Bergamo</h1>
+    </div>
+
+    <!-- BASSO -->
+    <div class="hero-bottom">
+        <h2>Vivi l’emozione dell’enduro in Bergamasca</h2>
+    </div>
+
 </div>
 
 <!-- NAV -->
 <nav>
     <a href="#about">Chi siamo</a>
     <a href="#bikes">Bici</a>
-    <a href="#electric-motos">Moto elettriche</a>
-    <a href="#tracks">Circuiti</a>
-    <a href="#trails">Sentieri</a>
+    <a href="#electric">Moto elettriche</a>
     <a href="#contacts">Contatti</a>
 </nav>
 
-<!-- ABOUT -->
+<!-- CONTENUTO -->
 <section id="about">
-    <h2>Chi siamo</h2>
+    <h3>Chi siamo</h3>
     <div class="card">
-        <p>
-            ASD Enduro Bike Bergamo nasce dalla passione per l’off-road, 
-            l’enduro e le nuove tecnologie elettriche.
-            Un luogo dove crescere, allenarsi e condividere adrenalina pura.
-        </p>
+        Passione, off-road ed elettrico.  
+        Enduro Bike Bergamo è adrenalina pura.
     </div>
 </section>
 
-<!-- BIKES -->
-<section id="bikes">
-    <h2>Le nostre bici</h2>
-
-    <div class="card">
-        <h3>Enduro</h3>
-        <p>Perfette per discese tecniche e percorsi impegnativi.</p>
-    </div>
-
-    <div class="card">
-        <h3>E-MTB</h3>
-        <p>Potenza elettrica e controllo totale.</p>
-    </div>
-
-    <div class="card">
-        <h3>Pump Track</h3>
-        <p>Divertimento puro per ogni livello.</p>
-    </div>
-</section>
-
-<!-- MOTO ELETTRICHE -->
-<section id="electric-motos">
-    <h2>Moto elettriche</h2>
-
-    <div class="card">
-        <h3>Baby</h3>
-        <p>Ideali per bambini e principianti.</p>
-    </div>
-
-    <div class="card">
-        <h3>Beginner</h3>
-        <p>Per chi vuole iniziare a spingere.</p>
-    </div>
-
-    <div class="card">
-        <h3>Advanced</h3>
-        <p>Prestazioni elevate e massimo divertimento.</p>
-    </div>
-</section>
-
-<!-- CIRCUITI -->
-<section id="tracks">
-    <h2>I nostri circuiti</h2>
-
-    <div class="card">
-        <p>Pump Track • E-Cross • MTB</p>
-    </div>
-
-    <div class="card">
-        <p>Enduro • Eventi • Allenamenti</p>
-    </div>
-</section>
-
-<!-- SENTIERI -->
-<section id="trails">
-    <h2>Sentieri preferiti</h2>
-
-    <div class="card">
-        <p>Orobie • Cascate • Monte Alben</p>
-    </div>
-</section>
-
-<!-- CONTATTI -->
 <section id="contacts">
-    <h2>Contatti</h2>
-
+    <h3>Contatti</h3>
     <div class="card">
-        <p>Email: info@endurobikebergamo.it</p>
-        <p>Telefono: +39 035 1234567</p>
-        <p>Bergamo</p>
+        info@endurobikebergamo.it<br>
+        Bergamo
     </div>
 </section>
-
-<!-- SOCIAL -->
-<section class="social">
-    <h2>Seguici</h2>
-
-    <a href="https://www.youtube.com/@EnduroBikeBergamo" target="_blank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="YouTube">
-    </a>
-
-    <a href="https://www.instagram.com/EnduroBikeBergamo" target="_blank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
-    </a>
-
-    <a href="https://www.tiktok.com/@endurobikebergamo" target="_blank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Tiktok_icon.svg" alt="TikTok">
-    </a>
-</section>
-
-<!-- FOOTER -->
-<footer>
-    © 2026 Enduro Bike Bergamo – Tutti i diritti riservati
-</footer>
 
 </body>
 </html>
