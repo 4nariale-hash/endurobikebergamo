@@ -15,6 +15,7 @@
       --dark:#111111;
       --text:#ffffff;
       --muted:#dddddd;
+      --border:#222222;
     }
 
     body{
@@ -24,13 +25,13 @@
       font-family: Arial, sans-serif;
     }
 
-    /* LAYER FISSO (casco) - resta fermo mentre tutto scorre */
+    /* SFONDO FISSO (casco) - resta fermo mentre tutto scorre */
     .bg-fixed{
       position:fixed;
       inset:0;
       z-index:-2;
       background:
-        linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.85)),
+        linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.75)),
         url("casco.jpeg");
       background-size:cover;
       background-position:center;
@@ -41,9 +42,6 @@
     .hero{
       position:relative;
       height:100vh;
-      display:flex;
-      align-items:stretch;
-      justify-content:center;
       overflow:hidden;
     }
 
@@ -61,12 +59,12 @@
       display:block;
     }
 
-    /* Testo in basso sovrapposto */
+    /* TESTO IN BASSO SOVRAPPOSTO (alzato) */
     .hero-text{
       position:absolute;
       left:0;
       right:0;
-      bottom:34px;
+      bottom:90px; /* <-- alzato per essere visibile senza scroll */
       z-index:2;
       text-align:center;
       padding:0 18px;
@@ -75,16 +73,23 @@
       letter-spacing:4px;
       font-size:clamp(28px, 6vw, 62px);
       color:var(--text);
-      text-shadow: 0 8px 30px rgba(0,0,0,0.75);
+      background:transparent;
+      text-shadow: 0 10px 35px rgba(0,0,0,0.75);
     }
 
-    /* NAV */
+    /* Se lo schermo è basso (alcuni telefoni), alza ancora un po’ */
+    @media (max-height: 700px){
+      .hero-text{ bottom:120px; }
+    }
+
+    /* NAV (semi-trasparente per far vedere casco dietro) */
     nav{
       position:relative;
       z-index:1;
-      background:var(--black);
-      border-top:1px solid #222;
-      border-bottom:1px solid #222;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(4px);
+      border-top:1px solid var(--border);
+      border-bottom:1px solid var(--border);
       padding:14px 10px;
       text-align:center;
     }
@@ -97,14 +102,18 @@
     }
     nav a:hover{ text-decoration:underline; }
 
-    /* SEZIONI */
+    /* SEZIONI: TRASPARENTI (non coprono il casco) */
     section{
       position:relative;
       z-index:1;
-      background:var(--black);
+      background: transparent;
       padding:60px 18px;
       text-align:center;
     }
+
+    /* Titoli senza sfondo */
+    h1, h2, h3{ background:transparent; }
+
     h2{
       margin:0 0 18px 0;
       color:var(--orange);
@@ -112,16 +121,19 @@
       letter-spacing:3px;
       text-transform:uppercase;
       font-size:clamp(26px, 4vw, 44px);
+      text-shadow: 0 8px 24px rgba(0,0,0,0.65);
     }
 
-    /* CARD (per bici/moto/trail) */
+    /* CARD: leggibili ma trasparenti (effetto vetro) */
     .bike-card, .trail-card, .moto-card{
       max-width:760px;
       margin:18px auto;
       padding:18px;
-      border:1px solid #222;
-      background:rgba(0,0,0,0.85);
+      border:1px solid var(--border);
+      background: rgba(0,0,0,0.60);
+      backdrop-filter: blur(3px);
       text-align:left;
+      border-radius: 10px;
     }
     .bike-card h3, .trail-card h3, .moto-card h3{
       margin:0 0 8px 0;
@@ -130,6 +142,7 @@
       letter-spacing:2px;
       text-transform:uppercase;
       font-size:28px;
+      text-shadow: 0 8px 20px rgba(0,0,0,0.6);
     }
     .bike-card p, .trail-card p, .moto-card p{
       margin:0;
@@ -137,13 +150,22 @@
       line-height:1.5;
     }
 
-    /* Testo "chi siamo" più leggibile */
+    /* Testi "Chi siamo" leggibili, senza blocchi neri */
     #about p{
       max-width:900px;
-      margin:10px auto;
+      margin:12px auto;
       color:var(--muted);
       line-height:1.65;
       text-align:left;
+      background: transparent;
+      text-shadow: 0 8px 24px rgba(0,0,0,0.55);
+    }
+
+    /* CONTATTI */
+    .contacts p{
+      color: var(--orange);
+      margin: 6px 0;
+      text-shadow: 0 8px 24px rgba(0,0,0,0.55);
     }
 
     /* SOCIAL */
@@ -162,18 +184,20 @@
       width:auto;
     }
 
-    /* FOOTER */
+    /* FOOTER (semi trasparente) */
     footer{
       position:relative;
       z-index:1;
-      background:var(--dark);
+      background: rgba(0,0,0,0.75);
+      backdrop-filter: blur(3px);
       color:var(--muted);
       text-align:center;
       padding:18px;
       font-size:14px;
+      border-top:1px solid var(--border);
     }
 
-    /* Mobile: rendi nav più “compatta” */
+    /* Mobile: nav più compatta */
     @media (max-width: 520px){
       nav a{ margin:0 8px; font-size:14px; }
       .bike-card, .trail-card, .moto-card{ text-align:left; }
@@ -190,15 +214,13 @@
   <!-- HERO -->
   <div class="hero">
     <div class="hero-logo">
-      <!-- logo full width -->
       <img src="logo2.jpeg" alt="Enduro Bike Bergamo">
     </div>
 
-    <!-- scritta in basso sovrapposta -->
     <div class="hero-text">Vivi l’emozione dell’enduro in Bergamasca</div>
   </div>
 
-  <!-- NAV (ripristinato con TUTTI i link) -->
+  <!-- NAV (tutti i link, incluso social) -->
   <nav>
     <a href="#about">Chi Siamo</a>
     <a href="#bikes">Le Nostre Bici</a>
@@ -209,7 +231,7 @@
     <a href="#social">Social</a>
   </nav>
 
-  <!-- ABOUT (testi originali) -->
+  <!-- ABOUT (testo originale) -->
   <section id="about">
     <h2>Chi Siamo</h2>
     <p>
@@ -225,7 +247,7 @@
     </p>
   </section>
 
-  <!-- BIKES (ripristinato) -->
+  <!-- BIKES (originale) -->
   <section id="bikes" class="bikes">
     <h2>Le Nostre Bici</h2>
 
@@ -246,22 +268,22 @@
 
     <div class="bike-card">
       <h3>Modello 4</h3>
-      <p>Ottimizzata per Pump Track.</p>
+      <p>Ottimizzata per pump Track.</p>
     </div>
   </section>
 
-  <!-- E-MOTOS (ripristinato) -->
+  <!-- MOTO ELETTRICHE (originale) -->
   <section id="electric-motos" class="electric-motos">
     <h2>Le Nostre Moto Elettriche</h2>
 
     <div class="moto-card">
       <h3>Modello Beginner</h3>
-      <p>Perfetta per cominciare.</p>
+      <p>Perfetta per cominciare</p>
     </div>
 
     <div class="moto-card">
-      <h3>Modello Baby</h3>
-      <p>Perfetta per bambini alle prime armi.</p>
+      <h3>Modello baby</h3>
+      <p>Perfetta per bambini alle prime armi</p>
     </div>
 
     <div class="moto-card">
@@ -270,7 +292,7 @@
     </div>
   </section>
 
-  <!-- TRACKS (ripristinato) -->
+  <!-- CIRCUITI (originale) -->
   <section id="tracks" class="tracks">
     <h2>I nostri circuiti</h2>
 
@@ -285,7 +307,7 @@
     </div>
   </section>
 
-  <!-- TRAILS (ripristinato) -->
+  <!-- SENTIERI (originale) -->
   <section id="trails" class="trails">
     <h2>I nostri sentieri preferiti</h2>
 
@@ -305,17 +327,17 @@
     </div>
   </section>
 
-  <!-- CONTACTS (ripristinato) -->
+  <!-- CONTATTI (originale) -->
   <section id="contacts" class="contacts">
     <h2>Contattaci</h2>
     <div class="trail-card" style="text-align:center;">
-      <p style="color:var(--orange); margin:6px 0;">Email: info@endurobikebergamo.it</p>
-      <p style="color:var(--orange); margin:6px 0;">Telefono: +39 035 1234567</p>
-      <p style="color:var(--orange); margin:6px 0;">Indirizzo: Via delle Orobie, 12, Bergamo</p>
+      <p>Email: info@endurobikebergamo.it</p>
+      <p>Telefono: +39 035 1234567</p>
+      <p>Indirizzo: Via delle Orobie, 12, Bergamo</p>
     </div>
   </section>
 
-  <!-- SOCIAL (ripristinato + link nel menu) -->
+  <!-- SOCIAL (originale) -->
   <section id="social">
     <h2>Seguici sui Social</h2>
 
