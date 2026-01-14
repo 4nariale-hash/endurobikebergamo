@@ -1,154 +1,342 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Enduro Bike Bergamo</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Enduro Bike Bergamo</title>
 
-<!-- FONT SPORTIVO -->
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <!-- FONT SPORTIVO -->
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
 
-<style>
-body {
-    margin: 0;
-    background: black;
-    color: white;
-    font-family: 'Bebas Neue', Arial, sans-serif;
-}
-
-/* HERO FULLSCREEN */
-.hero {
-    position: relative;
-    height: 100vh;
-    background-image:
-        linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)),
-        url("casco.jpeg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-}
-
-/* LOGO IN ALTO */
-.hero-logo {
-    position: absolute;
-    top: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.hero-logo img {
-    width: 220px;
-    max-width: 80%;
-}
-
-/* TESTO IN BASSO SOVRAPPOSTO */
-.hero-text {
-    position: absolute;
-    bottom: 40px;
-    width: 100%;
-    text-align: center;
-    padding: 0 20px;
-}
-
-.hero-text h1 {
-    font-size: clamp(32px, 6vw, 64px);
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    margin: 0;
-    color: white;
-}
-
-/* NAV */
-nav {
-    background: black;
-    padding: 15px 0;
-    text-align: center;
-}
-
-nav a {
-    color: #ff6600;
-    margin: 0 15px;
-    text-decoration: none;
-    font-size: 18px;
-}
-
-nav a:hover {
-    text-decoration: underline;
-}
-
-/* SEZIONI */
-section {
-    padding: 60px 20px;
-    text-align: center;
-    background: black;
-}
-
-h2 {
-    color: #ff6600;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-}
-
-.card {
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 20px;
-    border: 1px solid #222;
-    font-family: Arial, sans-serif;
-    color: #ddd;
-}
-
-/* MOBILE FIX */
-@media (max-width: 768px) {
-    .hero {
-        background-attachment: scroll;
+  <style>
+    :root{
+      --orange:#ff6600;
+      --black:#000000;
+      --dark:#111111;
+      --text:#ffffff;
+      --muted:#dddddd;
     }
-}
-</style>
+
+    body{
+      margin:0;
+      background:var(--black);
+      color:var(--text);
+      font-family: Arial, sans-serif;
+    }
+
+    /* LAYER FISSO (casco) - resta fermo mentre tutto scorre */
+    .bg-fixed{
+      position:fixed;
+      inset:0;
+      z-index:-2;
+      background:
+        linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.85)),
+        url("casco.jpeg");
+      background-size:cover;
+      background-position:center;
+      background-repeat:no-repeat;
+    }
+
+    /* HERO = prima schermata */
+    .hero{
+      position:relative;
+      height:100vh;
+      display:flex;
+      align-items:stretch;
+      justify-content:center;
+      overflow:hidden;
+    }
+
+    /* LOGO full width */
+    .hero-logo{
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      z-index:2;
+    }
+    .hero-logo img{
+      width:100%;
+      height:auto;
+      display:block;
+    }
+
+    /* Testo in basso sovrapposto */
+    .hero-text{
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:34px;
+      z-index:2;
+      text-align:center;
+      padding:0 18px;
+      font-family:'Bebas Neue', Arial, sans-serif;
+      text-transform:uppercase;
+      letter-spacing:4px;
+      font-size:clamp(28px, 6vw, 62px);
+      color:var(--text);
+      text-shadow: 0 8px 30px rgba(0,0,0,0.75);
+    }
+
+    /* NAV */
+    nav{
+      position:relative;
+      z-index:1;
+      background:var(--black);
+      border-top:1px solid #222;
+      border-bottom:1px solid #222;
+      padding:14px 10px;
+      text-align:center;
+    }
+    nav a{
+      color:var(--orange);
+      text-decoration:none;
+      font-weight:700;
+      margin:0 12px;
+      white-space:nowrap;
+    }
+    nav a:hover{ text-decoration:underline; }
+
+    /* SEZIONI */
+    section{
+      position:relative;
+      z-index:1;
+      background:var(--black);
+      padding:60px 18px;
+      text-align:center;
+    }
+    h2{
+      margin:0 0 18px 0;
+      color:var(--orange);
+      font-family:'Bebas Neue', Arial, sans-serif;
+      letter-spacing:3px;
+      text-transform:uppercase;
+      font-size:clamp(26px, 4vw, 44px);
+    }
+
+    /* CARD (per bici/moto/trail) */
+    .bike-card, .trail-card, .moto-card{
+      max-width:760px;
+      margin:18px auto;
+      padding:18px;
+      border:1px solid #222;
+      background:rgba(0,0,0,0.85);
+      text-align:left;
+    }
+    .bike-card h3, .trail-card h3, .moto-card h3{
+      margin:0 0 8px 0;
+      color:var(--orange);
+      font-family:'Bebas Neue', Arial, sans-serif;
+      letter-spacing:2px;
+      text-transform:uppercase;
+      font-size:28px;
+    }
+    .bike-card p, .trail-card p, .moto-card p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.5;
+    }
+
+    /* Testo "chi siamo" più leggibile */
+    #about p{
+      max-width:900px;
+      margin:10px auto;
+      color:var(--muted);
+      line-height:1.65;
+      text-align:left;
+    }
+
+    /* SOCIAL */
+    #social{
+      padding:40px 18px 60px 18px;
+    }
+    .social-row{
+      display:flex;
+      justify-content:center;
+      gap:34px;
+      margin-top:20px;
+      flex-wrap:wrap;
+    }
+    .social-row img{
+      height:52px;
+      width:auto;
+    }
+
+    /* FOOTER */
+    footer{
+      position:relative;
+      z-index:1;
+      background:var(--dark);
+      color:var(--muted);
+      text-align:center;
+      padding:18px;
+      font-size:14px;
+    }
+
+    /* Mobile: rendi nav più “compatta” */
+    @media (max-width: 520px){
+      nav a{ margin:0 8px; font-size:14px; }
+      .bike-card, .trail-card, .moto-card{ text-align:left; }
+      #about p{ text-align:left; }
+    }
+  </style>
 </head>
 
 <body>
 
-<!-- HERO -->
-<div class="hero">
+  <!-- SFONDO FISSO -->
+  <div class="bg-fixed" aria-hidden="true"></div>
 
-    <!-- LOGO -->
+  <!-- HERO -->
+  <div class="hero">
     <div class="hero-logo">
-        <img src="logo2.jpeg" alt="Enduro Bike Bergamo">
+      <!-- logo full width -->
+      <img src="logo2.jpeg" alt="Enduro Bike Bergamo">
     </div>
 
-    <!-- TESTO IN BASSO -->
-    <div class="hero-text">
-        <h1>Vivi l’emozione dell’enduro in Bergamasca</h1>
-    </div>
+    <!-- scritta in basso sovrapposta -->
+    <div class="hero-text">Vivi l’emozione dell’enduro in Bergamasca</div>
+  </div>
 
-</div>
-
-<!-- NAV -->
-<nav>
-    <a href="#about">Chi siamo</a>
-    <a href="#bikes">Bici</a>
-    <a href="#electric">Moto elettriche</a>
+  <!-- NAV (ripristinato con TUTTI i link) -->
+  <nav>
+    <a href="#about">Chi Siamo</a>
+    <a href="#bikes">Le Nostre Bici</a>
+    <a href="#electric-motos">Le Nostre Moto Elettriche</a>
+    <a href="#tracks">I nostri circuiti</a>
+    <a href="#trails">I nostri sentieri preferiti</a>
     <a href="#contacts">Contatti</a>
-</nav>
+    <a href="#social">Social</a>
+  </nav>
 
-<!-- CONTENUTO -->
-<section id="about">
-    <h2>Chi siamo</h2>
-    <div class="card">
-        Passione, off-road ed elettrico.<br>
-        Enduro Bike Bergamo è adrenalina pura.
-    </div>
-</section>
+  <!-- ABOUT (testi originali) -->
+  <section id="about">
+    <h2>Chi Siamo</h2>
+    <p>
+      Siamo lieti di presentarvi l’ASD Enduro Bike Bergamo, un’associazione sportiva dedicata agli amanti delle due ruote,
+      del mondo dell’enduro e delle avventure outdoor. Con istruttori qualificati dalla Federazione Ciclistica Italiana e
+      molti anni di esperienza sul campo, offriamo un ambiente ideale per imparare, crescere e condividere la passione
+      per il ciclismo, le moto elettriche e il turismo su due ruote.
+    </p>
+    <p>
+      Fondato da Tomaso Giupponi e Alessandro Fornari veri appassionati delle due ruote, l’ASD unisce competenza,
+      professionalità e spirito di avventura. Ci impegniamo a promuovere lo sport dell’enduro bike e delle moto elettriche,
+      due discipline che coniugano adrenalina, innovazione e sostenibilità.
+    </p>
+  </section>
 
-<section id="contacts">
-    <h2>Contatti</h2>
-    <div class="card">
-        info@endurobikebergamo.it<br>
-        Bergamo
+  <!-- BIKES (ripristinato) -->
+  <section id="bikes" class="bikes">
+    <h2>Le Nostre Bici</h2>
+
+    <div class="bike-card">
+      <h3>Modello 1</h3>
+      <p>Ideale per percorsi tecnici e discese mozzafiato.</p>
     </div>
-</section>
+
+    <div class="bike-card">
+      <h3>Modello 2</h3>
+      <p>Perfetta per lunghe escursioni e salite impegnative.</p>
+    </div>
+
+    <div class="bike-card">
+      <h3>Modello 3</h3>
+      <p>Ottimizzata per velocità e performance.</p>
+    </div>
+
+    <div class="bike-card">
+      <h3>Modello 4</h3>
+      <p>Ottimizzata per Pump Track.</p>
+    </div>
+  </section>
+
+  <!-- E-MOTOS (ripristinato) -->
+  <section id="electric-motos" class="electric-motos">
+    <h2>Le Nostre Moto Elettriche</h2>
+
+    <div class="moto-card">
+      <h3>Modello Beginner</h3>
+      <p>Perfetta per cominciare.</p>
+    </div>
+
+    <div class="moto-card">
+      <h3>Modello Baby</h3>
+      <p>Perfetta per bambini alle prime armi.</p>
+    </div>
+
+    <div class="moto-card">
+      <h3>Modello TrailBlaze</h3>
+      <p>Design innovativo e performance elevate.</p>
+    </div>
+  </section>
+
+  <!-- TRACKS (ripristinato) -->
+  <section id="tracks" class="tracks">
+    <h2>I nostri circuiti</h2>
+
+    <div class="trail-card">
+      <h3>Circuito 1</h3>
+      <p>PUMP TRACK - E-CROSS - MTB ESCURSIONS</p>
+    </div>
+
+    <div class="trail-card">
+      <h3>Circuito 2</h3>
+      <p>E-CROSS - ENDURO EVENTS</p>
+    </div>
+  </section>
+
+  <!-- TRAILS (ripristinato) -->
+  <section id="trails" class="trails">
+    <h2>I nostri sentieri preferiti</h2>
+
+    <div class="trail-card">
+      <h3>Sentiero delle Orobie</h3>
+      <p>Un percorso spettacolare immerso nella natura.</p>
+    </div>
+
+    <div class="trail-card">
+      <h3>Trail delle Cascate</h3>
+      <p>Un'avventura tra salti e passaggi tecnici.</p>
+    </div>
+
+    <div class="trail-card">
+      <h3>Anello del Monte Alben</h3>
+      <p>Un circuito panoramico con vista mozzafiato.</p>
+    </div>
+  </section>
+
+  <!-- CONTACTS (ripristinato) -->
+  <section id="contacts" class="contacts">
+    <h2>Contattaci</h2>
+    <div class="trail-card" style="text-align:center;">
+      <p style="color:var(--orange); margin:6px 0;">Email: info@endurobikebergamo.it</p>
+      <p style="color:var(--orange); margin:6px 0;">Telefono: +39 035 1234567</p>
+      <p style="color:var(--orange); margin:6px 0;">Indirizzo: Via delle Orobie, 12, Bergamo</p>
+    </div>
+  </section>
+
+  <!-- SOCIAL (ripristinato + link nel menu) -->
+  <section id="social">
+    <h2>Seguici sui Social</h2>
+
+    <div class="social-row">
+      <a href="https://www.youtube.com/@EnduroBikeBergamo" target="_blank" rel="noopener">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="YouTube">
+      </a>
+
+      <a href="https://www.instagram.com/EnduroBikeBergamo" target="_blank" rel="noopener">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" style="border-radius:10px;">
+      </a>
+
+      <a href="https://www.tiktok.com/@endurobikebergamo" target="_blank" rel="noopener">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Tiktok_icon.svg" alt="TikTok">
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 Enduro Bike Bergamo — Tutti i diritti riservati
+  </footer>
 
 </body>
 </html>
