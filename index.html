@@ -138,10 +138,11 @@
   max-width:260px;
 }
 .person-card img{
-  width:100%;
-  max-width:220px;
-  border-radius:50%;
-  border:3px solid var(--orange);
+  width: 220px;        /* larghezza identica */
+  height: 220px;       /* altezza identica */
+  object-fit: cover;   /* ritaglia l’immagine mantenendo le proporzioni */
+  border-radius: 50%;
+  border: 3px solid var(--orange);
 }
 .person-card h3{
   margin:14px 0 6px;
