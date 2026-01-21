@@ -25,7 +25,7 @@
       font-family: Arial, sans-serif;
     }
 
-    /* SFONDO FISSO (casco) - resta fermo mentre tutto scorre */
+    /* SFONDO FISSO (casco) */
     .bg-fixed{
       position:fixed;
       inset:0;
@@ -38,14 +38,14 @@
       background-repeat:no-repeat;
     }
 
-    /* HERO = prima schermata */
+    /* HERO */
     .hero{
       position:relative;
       height:100vh;
       overflow:hidden;
     }
 
-    /* LOGO full width */
+    /* LOGO */
     .hero-logo{
       position:absolute;
       top:0;
@@ -60,12 +60,12 @@
       display:block;
     }
 
-    /* TESTO IN BASSO SOVRAPPOSTO (alzato) */
+    /* TESTO HERO */
     .hero-text{
       position:absolute;
       left:0;
       right:0;
-      bottom:115px; /* <-- alzato per essere visibile senza scroll */
+      bottom:115px;
       z-index:2;
       text-align:center;
       padding:0 18px;
@@ -78,12 +78,11 @@
       text-shadow: 0 10px 35px rgba(0,0,0,0.75);
     }
 
-    /* Se lo schermo è basso (alcuni telefoni), alza ancora un po’ */
     @media (max-height: 700px){
       .hero-text{ bottom:120px; }
     }
 
-    /* NAV (semi-trasparente per far vedere casco dietro) */
+    /* NAV */
     nav{
       position:relative;
       z-index:1;
@@ -103,7 +102,7 @@
     }
     nav a:hover{ text-decoration:underline; }
 
-    /* SEZIONI: TRASPARENTI (non coprono il casco) */
+    /* SEZIONI */
     section{
       position:relative;
       z-index:1;
@@ -112,7 +111,6 @@
       text-align:center;
     }
 
-    /* Titoli senza sfondo */
     h1, h2, h3{ background:transparent; }
 
     h2{
@@ -124,37 +122,38 @@
       font-size:clamp(26px, 4vw, 44px);
       text-shadow: 0 8px 24px rgba(0,0,0,0.65);
     }
-    
-/* PERSONE */
-.people-row{
-  display:flex;
-  justify-content:center;
-  gap:40px;
-  flex-wrap:wrap;
-  margin-top:30px;
-}
-.person-card{
-  text-align:center;
-  max-width:260px;
-}
-.person-card img{
-  width: 220px;        /* larghezza identica */
-  height: 220px;       /* altezza identica */
-  object-fit: cover;   /* ritaglia l’immagine mantenendo le proporzioni */
-  border-radius: 50%;
-  border: 3px solid var(--orange);
-}
-.person-card h3{
-  margin:14px 0 6px;
-  color:var(--orange);
-  font-family:'Bebas Neue', Arial, sans-serif;
-}
-.person-card p{
-  margin:0;
-  color:var(--muted);
-  font-size:14px;
-}
-    /* CARD: leggibili ma trasparenti (effetto vetro) */
+
+    /* PERSONE */
+    .people-row{
+      display:flex;
+      justify-content:center;
+      gap:40px;
+      flex-wrap:wrap;
+      margin-top:30px;
+    }
+    .person-card{
+      text-align:center;
+      max-width:260px;
+    }
+    .person-card img{
+      width: 220px;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid var(--orange);
+    }
+    .person-card h3{
+      margin:14px 0 6px;
+      color:var(--orange);
+      font-family:'Bebas Neue', Arial, sans-serif;
+    }
+    .person-card p{
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    /* CARD */
     .bike-card, .trail-card, .moto-card{
       max-width:760px;
       margin:18px auto;
@@ -180,7 +179,7 @@
       line-height:1.5;
     }
 
-    /* Testi "Chi siamo" leggibili, senza blocchi neri */
+    /* Testi */
     #about p{
       max-width:900px;
       margin:12px auto;
@@ -191,7 +190,6 @@
       text-shadow: 0 8px 24px rgba(0,0,0,0.55);
     }
 
-    /* CONTATTI */
     .contacts p{
       color: var(--orange);
       margin: 6px 0;
@@ -214,7 +212,7 @@
       width:auto;
     }
 
-    /* FOOTER (semi trasparente) */
+    /* FOOTER */
     footer{
       position:relative;
       z-index:1;
@@ -227,28 +225,31 @@
       border-top:1px solid var(--border);
     }
 
-    /* Mobile: nav più compatta */
     @media (max-width: 520px){
       nav a{ margin:0 8px; font-size:14px; }
       .bike-card, .trail-card, .moto-card{ text-align:left; }
       #about p{ text-align:left; }
     }
-    /* TESTO A LARGHEZZA UNIFORME - CHI SIAMO */
-.text-block {
-  max-width: 880px;
-  margin: 0 auto 20px;
-  line-height: 1.65;
-  color: #dddddd;
-  text-align: left;
-}
 
-.text-block li {
-  margin-bottom: 6px;
-}
+    .text-block {
+      max-width: 880px;
+      margin: 0 auto 20px;
+      line-height: 1.65;
+      color: #dddddd;
+      text-align: left;
+    }
+
+    .text-block li {
+      margin-bottom: 6px;
+    }
   </style>
 </head>
 
 <body>
+
+  <!-- SFONDO FISSO -->
+  <div class="bg-fixed"></div>
+
   <!-- HERO -->
   <div class="hero">
     <div class="hero-logo">
@@ -257,205 +258,133 @@
     <div class="hero-text">Vivi l’emozione dell’enduro in Bergamasca</div>
   </div>
 
-  <!-- NAV (tutti i link, incluso social) -->
-<nav>
-  <a href="#wip">Work in Progress</a>
-  <a href="#about">Chi Siamo</a>
-  <!--  <a href="#project">Il Progetto</a> -->
-  <a href="#courses">Corsi e Attività</a>
-  <a href="#bikes">Le Nostre Bici</a>
-  <a href="#electric-motos">Le Nostre Moto Elettriche</a>
-  <a href="#tracks">I nostri circuiti</a>
-  <a href="#trails">I nostri sentieri preferiti</a>
-  <a href="#contacts">Contatti</a>
-  <a href="#social">Social</a>
-</nav>
+  <!-- NAV -->
+  <nav>
+    <a href="#wip">Work in Progress</a>
+    <a href="#about">Chi Siamo</a>
+    <a href="#courses">Corsi e Attività</a>
+    <a href="#bikes">Le Nostre Bici</a>
+    <a href="#electric-motos">Le Nostre Moto Elettriche</a>
+    <a href="#tracks">I nostri circuiti</a>
+    <a href="#trails">I nostri sentieri preferiti</a>
+    <a href="#contacts">Contatti</a>
+    <a href="#social">Social</a>
+  </nav>
 
-
-  <!-- ABOUT (testo originale) -->
+  <!-- ABOUT -->
   <section id="about">
-  <h2>Chi siamo</h2>
-<!-- FONDATORI -->
-<section id="founders">
-<div class="people-row">
-  <div class="person-card">
-    <img src="tomaso.jpeg">
-    <h3>Tomaso Giupponi</h3>
-  </div>
-    <div class="person-card">
-    <img src="alessandro.jpeg">
-    <h3>Alessandro Fornari</h3>
-  </div>
-</div>
-</section>
-  <p class="text-block">
-    <strong>Enduro Bike Bergamo</strong> nasce dalla passione e dalla visione di
-    <strong>Tomaso Giupponi</strong> e <strong>Alessandro Fornari</strong>,
-    fondatori e appassionati di sport e motori, che hanno dato vita a
-    un’Associazione Sportiva Dilettantistica (ASD) con un obiettivo chiaro:
-    trasmettere ai giovani i valori dello sport, della disciplina e del
-    divertimento su due ruote.
-  </p>
+    <h2>Chi siamo</h2>
 
-  <p class="text-block">
-    La nostra ASD si avvale di <strong>istruttori qualificati della Federazione
-    Ciclistica Italiana</strong> e di <strong>guide cicloturistiche certificate</strong>,
-    offrendo attività strutturate, sicure e formative dedicate al mondo della
-    <strong>MTB</strong>, delle <strong>e-bike</strong>, delle
-    <strong>moto elettriche</strong> e delle <strong>moto endotermiche</strong>.
-    Ogni percorso è studiato per garantire apprendimento progressivo,
-    sicurezza e massimo coinvolgimento.
-  </p>
+    <section id="founders">
+      <div class="people-row">
+        <div class="person-card">
+          <img src="tomaso.jpeg">
+          <h3>Tomaso Giupponi</h3>
+        </div>
+        <div class="person-card">
+          <img src="alessandro.jpeg">
+          <h3>Alessandro Fornari</h3>
+        </div>
+      </div>
+    </section>
 
-  <h2>La nostra missione</h2>
+    <p class="text-block">
+      <strong>Enduro Bike Bergamo</strong> nasce dalla passione e dalla visione di
+      <strong>Tomaso Giupponi</strong> e <strong>Alessandro Fornari</strong>,
+      fondatori e appassionati di sport e motori...
+    </p>
 
-  <p class="text-block">
-    Crediamo nello sport come <strong>strumento di crescita personale e sociale</strong>.
-    Enduro Bike BG si impegna a:
-  </p>
+    <p class="text-block">
+      La nostra ASD si avvale di <strong>istruttori qualificati</strong>...
+    </p>
 
-  <ul class="text-block" style="list-style: disc; padding-left: 20px;">
-    <li>divulgare la cultura sportiva</li>
-    <li>educare al rispetto delle regole e dell’ambiente</li>
-    <li>sviluppare abilità tecniche e caratteriali</li>
-    <li>coltivare la passione per il motociclismo e il ciclismo off-road</li>
-  </ul>
+    <h2>La nostra missione</h2>
 
-  <p class="text-block">
-    Il nostro focus è rivolto in particolare ai <strong>giovani</strong>,
-    accompagnandoli in un percorso di apprendimento
-    <strong>progressivo, divertente e sicuro</strong>.
-  </p>
+    <p class="text-block">
+      Crediamo nello sport come <strong>strumento di crescita</strong>...
+    </p>
 
-  <h2>Un Ambassador d’eccellenza</h2>
-<!-- AMBASSADOR -->
-<section id="ambassador">
-<h2>Ambassador</h2>
-<div class="people-row">
-  <div class="person-card">
-    <img src="andrea.jpeg">
-    <h3>Andrea Bonacorsi</h3>
-  </div>
-</div>
-</section>
-  <p class="text-block">
-    Il nostro Ambassador è <strong>Andrea Bonacorsi</strong>, pilota Ducati,
-    pilota DOC bergamasco e punto di riferimento del motocross internazionale.
-  </p>
+    <ul class="text-block" style="list-style: disc; padding-left: 20px;">
+      <li>divulgare la cultura sportiva</li>
+      <li>educare al rispetto delle regole e dell’ambiente</li>
+      <li>sviluppare abilità tecniche e caratteriali</li>
+      <li>coltivare la passione per il motociclismo</li>
+    </ul>
 
-  <p class="text-block">
-    Numero uno nel <strong>ranking mondiale dei piloti italiani MXGP 2025</strong> e protagonista
-    assoluto del <strong>Campionato del Mondo MXGP</strong>, Andrea incarna
-    perfettamente i valori di <strong>passione, impegno, talento e determinazione</strong>
-    che Enduro Bike BG vuole trasmettere alle nuove generazioni.
-  </p>
-</section>
-<!-- CORSI (TESTO AGGIORNATO) -->
-<section id="courses">
-<h2>Corsi e attività</h2>
+    <p class="text-block">
+      Il nostro focus è rivolto ai <strong>giovani</strong>...
+    </p>
 
-<p class="text-block">
-Enduro Bike BG organizza corsi di <strong>dirt bike</strong>, <strong>e-bike</strong> e
-<strong>moto elettriche</strong>, sia su strada che fuoristrada, a partire dai
-<strong>3 anni di età</strong>, con programmi strutturati per ogni livello, dal principiante
-all’agonista, pensati per garantire apprendimento progressivo, sicurezza e divertimento.
-</p>
+    <h2>Ambassador</h2>
 
-<p class="text-block">
-Accanto all’attività formativa, proponiamo <strong>tour personalizzati</strong> ed
-<strong>escursioni per privati e aziende</strong>, con il supporto delle nostre guide
-cicloturistiche certificate FCI, per vivere esperienze autentiche su percorsi off-road
-e misti, studiate su misura in base alle esigenze dei partecipanti.
-</p>
+    <section id="ambassador">
+      <div class="people-row">
+        <div class="person-card">
+          <img src="andrea.jpeg">
+          <h3>Andrea Bonacorsi</h3>
+        </div>
+      </div>
+    </section>
 
-<p class="text-block">
-Per facilitare l’accesso a tutte le attività, offriamo inoltre la possibilità di
-<strong>noleggiare direttamente presso la nostra struttura</strong> e-bike, dirt bike e
-moto elettriche, assicurando mezzi sicuri, performanti e adatti a ogni fascia d’età.
-</p>
+    <p class="text-block">
+      Il nostro Ambassador è <strong>Andrea Bonacorsi</strong>...
+    </p>
+  </section>
 
-</section>
-  <!-- BIKES (originale) -->
-  <section id="bikes" class="bikes">
+  <!-- CORSI -->
+  <section id="courses">
+    <h2>Corsi e attività</h2>
+
+    <p class="text-block">
+      Enduro Bike BG organizza corsi di <strong>dirt bike</strong>...
+    </p>
+
+    <p class="text-block">
+      Accanto all’attività formativa, proponiamo <strong>tour personalizzati</strong>...
+    </p>
+
+    <p class="text-block">
+      Per facilitare l’accesso alle attività, offriamo <strong>noleggio</strong>...
+    </p>
+  </section>
+
+  <!-- BICI -->
+  <section id="bikes">
     <h2>Le Nostre Bici</h2>
 
-    <div class="bike-card">
-      <h3>Modello 1</h3>
-      <p>Ideale per percorsi tecnici e discese mozzafiato.</p>
-    </div>
-
-    <div class="bike-card">
-      <h3>Modello 2</h3>
-      <p>Perfetta per lunghe escursioni e salite impegnative.</p>
-    </div>
-
-    <div class="bike-card">
-      <h3>Modello 3</h3>
-      <p>Ottimizzata per velocità e performance.</p>
-    </div>
-
-    <div class="bike-card">
-      <h3>Modello 4</h3>
-      <p>Ottimizzata per pump Track.</p>
-    </div>
+    <div class="bike-card"><h3>Modello 1</h3><p>Ideale per percorsi tecnici.</p></div>
+    <div class="bike-card"><h3>Modello 2</h3><p>Perfetta per lunghe escursioni.</p></div>
+    <div class="bike-card"><h3>Modello 3</h3><p>Ottimizzata per velocità.</p></div>
+    <div class="bike-card"><h3>Modello 4</h3><p>Ottimizzata per pump track.</p></div>
   </section>
 
-  <!-- MOTO ELETTRICHE (originale) -->
-  <section id="electric-motos" class="electric-motos">
+  <!-- MOTO ELETTRICHE -->
+  <section id="electric-motos">
     <h2>Le Nostre Moto Elettriche</h2>
 
-    <div class="moto-card">
-      <h3>Modello Beginner</h3>
-      <p>Perfetta per cominciare</p>
-    </div>
-
-    <div class="moto-card">
-      <h3>Modello baby</h3>
-      <p>Perfetta per bambini alle prime armi</p>
-    </div>
-
-    <div class="moto-card">
-      <h3>Modello TrailBlaze</h3>
-      <p>Design innovativo e performance elevate.</p>
-    </div>
+    <div class="moto-card"><h3>Modello Beginner</h3><p>Perfetta per cominciare.</p></div>
+    <div class="moto-card"><h3>Modello Baby</h3><p>Per bambini alle prime armi.</p></div>
+    <div class="moto-card"><h3>TrailBlaze</h3><p>Design innovativo.</p></div>
   </section>
 
-  <!-- CIRCUITI (originale) -->
-  <section id="tracks" class="tracks">
+  <!-- CIRCUITI -->
+  <section id="tracks">
     <h2>I nostri circuiti</h2>
 
-    <div class="trail-card">
-      <h3>Circuito 1</h3>
-      <p>PUMP TRACK - E-CROSS - MTB ESCURSIONS</p>
-    </div>
-
-    <div class="trail-card">
-      <h3>Circuito 2</h3>
-      <p>E-CROSS - ENDURO EVENTS</p>
-    </div>
+    <div class="trail-card"><h3>Circuito 1</h3><p>PUMP TRACK - E-CROSS - MTB</p></div>
+    <div class="trail-card"><h3>Circuito 2</h3><p>E-CROSS - ENDURO EVENTS</p></div>
   </section>
 
-  <!-- SENTIERI (originale) -->
-  <section id="trails" class="trails">
+  <!-- SENTIERI -->
+  <section id="trails">
     <h2>I nostri sentieri preferiti</h2>
 
-    <div class="trail-card">
-      <h3>Sentiero delle Orobie</h3>
-      <p>Un percorso spettacolare immerso nella natura.</p>
-    </div>
-
-    <div class="trail-card">
-      <h3>Trail delle Cascate</h3>
-      <p>Un'avventura tra salti e passaggi tecnici.</p>
-    </div>
-
-    <div class="trail-card">
-      <h3>Anello del Monte Alben</h3>
-      <p>Un circuito panoramico con vista mozzafiato.</p>
-    </div>
+    <div class="trail-card"><h3>Orobie</h3><p>Percorso spettacolare.</p></div>
+    <div class="trail-card"><h3>Cascate</h3><p>Avventura tra salti.</p></div>
+    <div class="trail-card"><h3>Monte Alben</h3><p>Vista mozzafiato.</p></div>
   </section>
 
-  <!-- CONTATTI (originale) -->
+  <!-- CONTATTI -->
   <section id="contacts" class="contacts">
     <h2>Contattaci</h2>
     <div class="trail-card" style="text-align:center;">
@@ -465,24 +394,22 @@ moto elettriche, assicurando mezzi sicuri, performanti e adatti a ogni fascia d�
     </div>
   </section>
 
-  <!-- SOCIAL (originale) -->
+  <!-- SOCIAL -->
   <section id="social">
     <h2>Seguici sui Social</h2>
 
     <div class="social-row">
-      <a href="https://www.facebook.com/share/1K66ayJR6S/?mibextid=wwXIfr" target="_blank" rel="noopener">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Facebook_icon.svg" alt="Facebook">
-</a>
-      <a href="https://www.youtube.com/@EnduroBikeBergamo" target="_blank" rel="noopener">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="YouTube">
+      <a href="https://www.facebook.com/share/1K66ayJR6S/?mibextid=wwXIfr" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Facebook_icon.svg">
       </a>
-
-      <a href="https://www.instagram.com/EnduroBikeBergamo" target="_blank" rel="noopener">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" style="border-radius:10px;">
+      <a href="https://www.youtube.com/@EnduroBikeBergamo" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg">
       </a>
-
-      <a href="https://www.tiktok.com/@endurobikebergamo" target="_blank" rel="noopener">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Tiktok_icon.svg" alt="TikTok">
+      <a href="https://www.instagram.com/EnduroBikeBergamo" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" style="border-radius:10px;">
+      </a>
+      <a href="https://www.tiktok.com/@endurobikebergamo" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Tiktok_icon.svg">
       </a>
     </div>
   </section>
